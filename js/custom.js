@@ -10,6 +10,7 @@ jQuery(document).ready(function ($) {
         animation: "flipInX"
         , separator: ","
         , speed: 3000
+        , zIndex: '1'
     });
     // Initiate the wowjs
     new WOW().init();
@@ -57,12 +58,14 @@ jQuery(document).ready(function ($) {
     else if ($("#mobile-nav, #mobile-nav-toggle").length) {
         $("#mobile-nav, #mobile-nav-toggle").hide();
     }
+    
+    
     // Stick the header at top on scroll
     $("#header").sticky({
         topSpacing: 0
         , zIndex: '50'
     });
-    // Smoth scroll on page hash links
+    // Smooth scroll on page hash links
     $('a[href*="#"]:not([href="#"])').on('click', function () {
         if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
             var target = $(this.hash);
@@ -121,14 +124,15 @@ jQuery(document).ready(function ($) {
     })
     
     // Header navagation
-    var heightOfNavBar = 60;
+    var heightOfNavBar = 100;
     var top1 = $('#about').offset().top - heightOfNavBar - 30;
     var top2 = $('#experience').offset().top - heightOfNavBar;
     var top3 = $('#skills').offset().top - heightOfNavBar;
     var top4 = $('#portfolio').offset().top - heightOfNavBar;
     var top5 = $('#contact').offset().top - heightOfNavBar - 10;
-    $(document).scroll(function () {
-        var scrollPos = $(document).scrollTop();
+    $(window).scroll(function () {
+        var scrollPos = $(window).scrollTop();
+        if($(window).width()>768){
         if (scrollPos < top1) {
             $('.menu').css('color', '#fff');
         }
@@ -152,6 +156,7 @@ jQuery(document).ready(function ($) {
             $('.menu').css('color', '#fff');
             $('a[href$="#contact"]').css('color', '#03C4EB');
         }
+        }
     });
     
     
@@ -167,25 +172,6 @@ jQuery(document).ready(function ($) {
         }
         return false;     
     });
-    
-    $(document).ready(function($) {
-	// Our script will go here
-        $('.lightbox_trigger').click(function(e) {
-	// Code that makes the lightbox appear
-            var image_href = $(this).attr("href");
-    if ($('#lightbox').length > 0) { // #lightbox exists
-	
-	//insert img tag with clicked link's href as src value
-	$('#content').html('<img src="' + image_href + '" />');
-   	
-	//show lightbox window - you can use a transition here if you want, i.e. .show('fast')
-	$('#lightbox').show();
-}
-    
-            
-});
-
-});
     
 
     
